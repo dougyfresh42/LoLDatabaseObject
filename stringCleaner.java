@@ -1,5 +1,5 @@
 public class stringCleaner {
-    private stringCleaner() {
+    public stringCleaner() {
     }
 
     public String cleanString(String toClean) {

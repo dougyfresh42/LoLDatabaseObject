@@ -58,7 +58,7 @@ public class SQLHelper {
     }
 
     public boolean insertRune(String values) throws  Exception{
-	return statement.execute("INSERT INTO \"Rune\"(\"RuneName\", \"Description\", \"Price\", \"StatMod\", \"Tier\") VALUES("+values+");");
+	return statement.execute("INSERT INTO \"Rune\"(\"RuneName\", \"Description\", \"Price\", \"Tier\") VALUES("+values+");");
     }
 
     public boolean insertRuneSet(String values) throws Exception{
@@ -66,7 +66,7 @@ public class SQLHelper {
     }
 
     public boolean insertSummonerSpell(String values) throws Exception{
-	return statement.execute("NSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
+	return statement.execute("INSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
     }
 
     public boolean insertSummonerSpellSet(String values) throws Exception{
