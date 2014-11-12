@@ -65,6 +65,14 @@ public class SQLHelper {
 	return statement.execute("INSERT INTO \"RuneSet\"(\"GameID\", \"Champion\", \"Rune1\", \"Rune2\", \"Rune3\", \"Rune4\", \"Rune5\",\"Rune6\", \"Rune7\", \"Rune8\", \"Rune9\", \"Rune10\", \"Rune11\", \"Rune12\",\"Rune13\", \"Rune14\", \"Rune15\", \"Rune16\", \"Rune17\", \"Rune18\", \"Rune19\",\"Rune20\", \"Rune21\", \"Rune22\", \"Rune23\", \"Rune24\", \"Rune25\", \"Rune26\",\"Rune27\", \"Rune28\", \"Rune29\", \"Rune30\") VALUES("+values+");");
     }
 
+    public boolean insertSummonerSpell(String values) throws Exception{
+	return statement.execute("NSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
+    }
+
+    public boolean insertSummonerSpellSet(String values) throws Exception{
+	return statement.execute("INSERT INTO \"SummonerSpellSet\"(\"GameID\", \"Champion\", \"SummonerSpell1\", \"SummonerSpell2\") VALUES("+values+");");
+    }
+
     public void close() throws Exception{
         try {
             if (connect != null) connect.close();
