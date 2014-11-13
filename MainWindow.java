@@ -57,21 +57,33 @@ public class MainWindow extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-		JSplitPane infoPane = new JSplitPane();
-		infoPane.setResizeWeight(.25);
-		tabbedPane.addTab("Champions", null, infoPane, null);
+		JSplitPane championPane = new JSplitPane();
+		championPane.setResizeWeight(.25);
+		tabbedPane.addTab("Champions", null, championPane, null);
 		
 		championsModel.addElement("One");
 		championsModel.addElement("Two");
 		championsModel.addElement("Three");
 		
 		JList<String> championNameList = new JList<String>(championsModel);
-		infoPane.setLeftComponent(championNameList);		
+		championPane.setLeftComponent(championNameList);		
 		
-		infoPane.setRightComponent(new ChampionPanel());
+		championPane.setRightComponent(new ChampionPanel());
 		
-		JPanel itemPane = new JPanel();
+		
+		
+		JSplitPane itemPane = new JSplitPane();
+		itemPane.setResizeWeight(.25);
 		tabbedPane.addTab("Items", null, itemPane, null);
+		
+		itemsModel.addElement("One");
+		itemsModel.addElement("Two");
+		itemsModel.addElement("Three");
+		
+		JList<String> itemNameList = new JList<String>(itemsModel);
+		itemPane.setLeftComponent(itemNameList);
+		
+		itemPane.setRightComponent(new ItemPanel());
 		
 		JPanel masteriesPane = new JPanel();
 		tabbedPane.addTab("Masteries", null, masteriesPane, null);
