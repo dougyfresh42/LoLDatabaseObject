@@ -17,9 +17,9 @@ public class ItemPanel extends JPanel {
 		tableModel.setColumnCount(2);
 		
 		tableModel.addRow(new String[]{"Name:"});
-		tableModel.addRow(new String[]{"Description:"});
 		tableModel.addRow(new String[]{"Price:"});
 		tableModel.addRow(new String[]{"Components:"});
+		tableModel.addRow(new String[]{"Description:"});
 		
 		table = new JTable(tableModel)
 		{
@@ -36,7 +36,7 @@ public class ItemPanel extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(120);
 		table.getColumnModel().getColumn(1).setPreferredWidth(120);
 		
-		table.setRowHeight(1, 40);
+		table.setRowHeight(3, 40);
 		
 		this.add(table, BorderLayout.WEST);
 	}
