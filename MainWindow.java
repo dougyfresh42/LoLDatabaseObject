@@ -57,6 +57,7 @@ public class MainWindow extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
+		// Champion Tab
 		JSplitPane championPane = new JSplitPane();
 		championPane.setResizeWeight(.25);
 		tabbedPane.addTab("Champions", null, championPane, null);
@@ -68,10 +69,9 @@ public class MainWindow extends JFrame {
 		JList<String> championNameList = new JList<String>(championsModel);
 		championPane.setLeftComponent(championNameList);		
 		
-		championPane.setRightComponent(new ChampionPanel());
+		championPane.setRightComponent(new ChampionPanel());		
 		
-		
-		
+		// Item Tab
 		JSplitPane itemPane = new JSplitPane();
 		itemPane.setResizeWeight(.25);
 		tabbedPane.addTab("Items", null, itemPane, null);
@@ -85,8 +85,19 @@ public class MainWindow extends JFrame {
 		
 		itemPane.setRightComponent(new ItemPanel());
 		
-		JPanel masteriesPane = new JPanel();
+		// Masteries Tab
+		JSplitPane masteriesPane = new JSplitPane();
+		masteriesPane.setResizeWeight(.25);
 		tabbedPane.addTab("Masteries", null, masteriesPane, null);
+		
+		masteriesModel.addElement("One");
+		masteriesModel.addElement("Two");
+		masteriesModel.addElement("Three");
+		
+		JList<String> masteryNameList = new JList<String>(masteriesModel);
+		masteriesPane.setLeftComponent(masteryNameList);
+		
+		masteriesPane.setRightComponent(new MasteryPanel());
 		
 		JPanel runePane = new JPanel();
 		tabbedPane.addTab("Rune", null, runePane, null);
