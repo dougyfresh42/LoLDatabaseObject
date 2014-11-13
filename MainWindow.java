@@ -99,8 +99,19 @@ public class MainWindow extends JFrame {
 		
 		masteriesPane.setRightComponent(new MasteryPanel());
 		
-		JPanel runePane = new JPanel();
+		// Runes Tab
+		JSplitPane runePane = new JSplitPane();
+		runePane.setResizeWeight(.25);
 		tabbedPane.addTab("Rune", null, runePane, null);
+		
+		runesModel.addElement("One");
+		runesModel.addElement("Two");
+		runesModel.addElement("Three");
+		
+		JList<String> runeNameList = new JList<String>(runesModel);
+		runePane.setLeftComponent(runeNameList);
+		
+		runePane.setRightComponent(new RunePanel());
 		
 		JPanel summonerSpellsPane = new JPanel();
 		tabbedPane.addTab("Summoner Spells", null, summonerSpellsPane, null);
