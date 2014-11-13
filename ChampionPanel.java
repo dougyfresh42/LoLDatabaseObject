@@ -46,10 +46,10 @@ public class ChampionPanel extends JPanel {
 		table.setCellSelectionEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(120);
 		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.setRowHeight(11,50);
 		table.setRowHeight(12,50);
 		table.setRowHeight(13,50);
 		table.setRowHeight(14,50);
-		table.setRowHeight(15,50);
 		
 				
 		this.add(table, BorderLayout.WEST);
