@@ -113,8 +113,19 @@ public class MainWindow extends JFrame {
 		
 		runePane.setRightComponent(new RunePanel());
 		
-		JPanel summonerSpellsPane = new JPanel();
+		// Summoner Spells Tab
+		JSplitPane summonerSpellsPane = new JSplitPane();
+		summonerSpellsPane.setResizeWeight(.25);
 		tabbedPane.addTab("Summoner Spells", null, summonerSpellsPane, null);
+		
+		summonerSpellsModel.addElement("One");
+		summonerSpellsModel.addElement("Two");
+		summonerSpellsModel.addElement("Three");
+		
+		JList<String> summonerSpellsNameList = new JList<String>(summonerSpellsModel);
+		summonerSpellsPane.setLeftComponent(summonerSpellsNameList);
+		
+		summonerSpellsPane.setRightComponent(new SummonerSpellPanel());
 	}
 
 }
