@@ -82,7 +82,7 @@ public class JsonHelper
 	 */
 	public ArrayList<JSONObject> getItems() throws IOException, ParseException
 	{
-		URL url = new URL(BASE_URL + "static-data/na/v1.2/item?itemListData=from,gold,groups&api_key=" + API_KEY);
+		URL url = new URL(BASE_URL + "static-data/na/v1.2/item?itemListData=from,gold,groups,sanitizedDescription&api_key=" + API_KEY);
 		InputStream is = url.openStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 		String jsonText = readAll(reader);

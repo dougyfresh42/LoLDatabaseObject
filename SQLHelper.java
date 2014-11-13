@@ -42,7 +42,7 @@ public class SQLHelper {
     }
 
     public boolean insertItem(String values) throws Exception{
-	return statement.execute("INSERT INTO \"Item\"(\"ItemName\", \"Description\", \"Price\", \"Component1\", \"Component2\",\"Component3\", \"Component4\") VALUES("+values+");");
+	return statement.execute("INSERT INTO \"Item\"(\"ItemName\", \"Description\", \"Price\", \"Component1\", \"Component2\",\"Component3\", \"Component4\", \"ID\") VALUES("+values+");");
     }
 
     public boolean insertItemSet(String values) throws Exception{
@@ -58,7 +58,7 @@ public class SQLHelper {
     }
 
     public boolean insertRune(String values) throws  Exception{
-	return statement.execute("INSERT INTO \"Rune\"(\"RuneName\", \"Description\", \"Price\", \"StatMod\", \"Tier\") VALUES("+values+");");
+	return statement.execute("INSERT INTO \"Rune\"(\"RuneName\", \"Description\", \"Price\", \"Tier\") VALUES("+values+");");
     }
 
     public boolean insertRuneSet(String values) throws Exception{
@@ -66,12 +66,63 @@ public class SQLHelper {
     }
 
     public boolean insertSummonerSpell(String values) throws Exception{
-	return statement.execute("NSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
+	return statement.execute("INSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
     }
 
     public boolean insertSummonerSpellSet(String values) throws Exception{
 	return statement.execute("INSERT INTO \"SummonerSpellSet\"(\"GameID\", \"Champion\", \"SummonerSpell1\", \"SummonerSpell2\") VALUES("+values+");");
     }
+
+    //THE SELECT STATEMENTS
+   
+    public ResultSet selectAllChampion() throws Exception{
+	return statement.executeQuery("SELECT * FROM Champion");
+    }
+
+    public ResultSet selectAllRegion() throws Exception{
+	return statement.executeQuery("SELECT * FROM Region");
+    }
+
+    public ResultSet selectAllGame() throws Exception{
+	return statement.executeQuery("SELECT * FROM Game");
+    }
+
+    public ResultSet selectAllParticipates() throws Exception{
+	return statement.executeQuery("SELECT * FROM Participates");
+    }
+
+    public ResultSet selectAllItem() throws Exception{
+	return statement.executeQuery("SELECT * FROM Item");
+    }
+ 
+    public ResultSet selectAllRune() throws Exception{
+	return statement.executeQuery("SELECT * FROM Rune");
+    }
+
+    public ResultSet selectAllMastery() throws Exception{
+	return statement.executeQuery("SELECT * FROM Mastery");
+    }
+ 
+    public ResultSet selectAllSummonerSpell() throws Exception{
+	return statement.executeQuery("SELECT * FROM SummonerSpell");
+    }
+
+    public ResultSet selectAllItemSet() throws Exception{
+	return statement.executeQuery("SELECT * FROM ItemSet");
+    }
+
+    public ResultSet selectAllRuneSet() throws Exception{
+	return statement.executeQuery("SELECT * FROM RuneSet");
+    }
+
+    public ResultSet selectAllMasterySet() throws Exception{
+	return statement.executeQuery("SELECT * FROM MasterySet");
+    }
+
+    public ResultSet selectAllSummonerSpellSet() throws Exception{
+	return statement.executeQuery("SELECT * FROM SummonerSpellSet");
+    }
+
 
     public void close() throws Exception{
         try {
