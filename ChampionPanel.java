@@ -29,6 +29,10 @@ public class ChampionPanel extends JPanel {
 		tableModel.addRow(new String[]{"Defense:"});
 		tableModel.addRow(new String[]{"Magic Defense:"});
 		tableModel.addRow(new String[]{"Movement Speed:"});
+		tableModel.addRow(new String[]{"Q:"});
+		tableModel.addRow(new String[]{"W:"});
+		tableModel.addRow(new String[]{"E:"});
+		tableModel.addRow(new String[]{"R:"});
 		
 		table = new JTable(tableModel)
 		{
@@ -42,6 +46,11 @@ public class ChampionPanel extends JPanel {
 		table.setCellSelectionEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(120);
 		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.setRowHeight(12,50);
+		table.setRowHeight(13,50);
+		table.setRowHeight(14,50);
+		table.setRowHeight(15,50);
+		
 				
 		this.add(table, BorderLayout.WEST);
 

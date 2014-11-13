@@ -21,11 +21,11 @@ public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
 	
-	private DefaultListModel championsModel = new DefaultListModel();
-	private DefaultListModel itemsModel = new DefaultListModel();
-	private DefaultListModel masteriesModel = new DefaultListModel();
-	private DefaultListModel runesModel = new DefaultListModel();
-	private DefaultListModel summonerSpellsModel = new DefaultListModel();
+	private DefaultListModel<String> championsModel = new DefaultListModel<String>();
+	private DefaultListModel<String> itemsModel = new DefaultListModel<String>();
+	private DefaultListModel<String> masteriesModel = new DefaultListModel<String>();
+	private DefaultListModel<String> runesModel = new DefaultListModel<String>();
+	private DefaultListModel<String> summonerSpellsModel = new DefaultListModel<String>();
 
 	/**
 	 * Launch the application.
@@ -48,7 +48,7 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -57,17 +57,18 @@ public class MainWindow extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-		JSplitPane championPane = new JSplitPane();
-		tabbedPane.addTab("Champions", null, championPane, null);
+		JSplitPane infoPane = new JSplitPane();
+		infoPane.setResizeWeight(.25);
+		tabbedPane.addTab("Champions", null, infoPane, null);
 		
 		championsModel.addElement("One");
 		championsModel.addElement("Two");
 		championsModel.addElement("Three");
 		
-		JList championNameList = new JList(championsModel);
-		championPane.setLeftComponent(championNameList);		
+		JList<String> championNameList = new JList<String>(championsModel);
+		infoPane.setLeftComponent(championNameList);		
 		
-		championPane.setRightComponent(new ChampionPanel());
+		infoPane.setRightComponent(new ChampionPanel());
 		
 		JPanel itemPane = new JPanel();
 		tabbedPane.addTab("Items", null, itemPane, null);
