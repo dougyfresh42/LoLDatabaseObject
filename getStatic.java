@@ -106,9 +106,6 @@ public class getStatic {
         inserter.arbitraryQuery("truncate \"Rune\"");
         ArrayList<JSONObject> runes = jsoner.getRunes();
 
-        JSONObject a = runes.get(0);
-        System.out.println(a.toString());
-
         for(int i = 0; i < runes.size(); i++) {
             JSONObject rune = runes.get(i);
 
@@ -125,6 +122,50 @@ public class getStatic {
 
             inserter.insertRune(name + ", " + desc + ", " + price + ", " + tier);
         }
+
+        //items
+        inserter.arbitraryQuery("truncate \"Item\"");
+        ArrayList<JSONObject> items = jsoner.getItems();
+
+        for(int i = 0; i < items.size(); i++) {
+            JSONObject item = items.get(i);
+            String name = 
+             sc.cleanString(item.get("name").toString());
+            String desc =
+             sc.cleanString(item.get("sanitizedDescription").toString());
+            String price =
+             sc.cleanString(((JSONObject)item.get("gold")).get("total").toString());
+            String[] comp = new String[4];
+            comp[0] =
+             "null";
+            comp[1] = 
+             "null";
+            comp[2] = 
+             "null";
+            comp[3] =
+             "null";
+            String id =
+             sc.cleanString(item.get("id").toString());
+
+            if(item.containsKey("from")) {
+                JSONArray recipe = (JSONArray)item.get("from");
+                for(int j = 0; j < recipe.size(); j++) {
+                    String idkey = recipe.get(j).toString();
+                    for(int k = 0; k < items.size(); k++) {
+                        JSONObject it = items.get(k);
+                        if(idkey.equals(it.get("id").toString())) {
+                            comp[j] = sc.cleanString(it.get("name").toString());
+                            break;
+                        }
+                    }
+                }
+            }
+
+            inserter.insertItem(name + ", " + desc + ", " + price + ", " + 
+            comp[0] + ", " + comp[1] + ", " + comp[2] + ", " + comp[3] + 
+            ", " + id);
+        }
+
         inserter.close();
 
     }
