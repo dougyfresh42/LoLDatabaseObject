@@ -76,7 +76,9 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> championNameList = new JList<String>(championsModel);
-			championPane.setLeftComponent(championNameList);		
+			JScrollPane champScrollPane = new JScrollPane();
+			champScrollPane.setViewportView(championNameList);
+			championPane.setLeftComponent(champScrollPane);		
 			
 			championPane.setRightComponent(new ChampionPanel());		
 			
@@ -92,7 +94,9 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> itemNameList = new JList<String>(itemsModel);
-			itemPane.setLeftComponent(itemNameList);
+			JScrollPane itemScrollPane = new JScrollPane();
+			itemScrollPane.setViewportView(itemNameList);
+			itemPane.setLeftComponent(itemScrollPane);	
 			
 			itemPane.setRightComponent(new ItemPanel());
 			
@@ -108,7 +112,9 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> masteryNameList = new JList<String>(masteriesModel);
-			masteriesPane.setLeftComponent(masteryNameList);
+			JScrollPane masteryScrollPane = new JScrollPane();
+			masteryScrollPane.setViewportView(masteryNameList);
+			masteriesPane.setLeftComponent(masteryScrollPane);	
 			
 			masteriesPane.setRightComponent(new MasteryPanel());
 			
@@ -124,7 +130,9 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> runeNameList = new JList<String>(runesModel);
-			runePane.setLeftComponent(runeNameList);
+			JScrollPane runeScrollPane = new JScrollPane();
+			runeScrollPane.setViewportView(runeNameList);
+			runePane.setLeftComponent(runeScrollPane);	
 			
 			runePane.setRightComponent(new RunePanel());
 			
@@ -139,8 +147,10 @@ public class MainWindow extends JFrame {
 				summonerSpellsModel.addElement(summonerSpells.getString("SummonerSpellName"));
 			}
 			
-			JList<String> summonerSpellsNameList = new JList<String>(summonerSpellsModel);
-			summonerSpellsPane.setLeftComponent(summonerSpellsNameList);
+			JList<String> summonerSpellNameList = new JList<String>(summonerSpellsModel);
+			JScrollPane ssScrollPane = new JScrollPane();
+			ssScrollPane.setViewportView(summonerSpellNameList);
+			summonerSpellsPane.setLeftComponent(ssScrollPane);	
 			
 			summonerSpellsPane.setRightComponent(new SummonerSpellPanel());
 		}
