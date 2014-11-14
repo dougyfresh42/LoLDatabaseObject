@@ -76,51 +76,51 @@ public class SQLHelper {
     //THE SELECT STATEMENTS
    
     public ResultSet selectAllChampion() throws Exception{
-	return statement.executeQuery("SELECT * FROM Champion");
+	return statement.executeQuery("SELECT * FROM \"Champion\" ORDER BY \"ChampName\"");
     }
 
     public ResultSet selectAllRegion() throws Exception{
-	return statement.executeQuery("SELECT * FROM Region");
+	return statement.executeQuery("SELECT * FROM \"Region\" ORDER BY \"RegionName\"");
     }
 
     public ResultSet selectAllGame() throws Exception{
-	return statement.executeQuery("SELECT * FROM Game");
+	return statement.executeQuery("SELECT * FROM \"Game\"");
     }
 
     public ResultSet selectAllParticipates() throws Exception{
-	return statement.executeQuery("SELECT * FROM Participates");
+	return statement.executeQuery("SELECT * FROM \"Participates\"");
     }
 
     public ResultSet selectAllItem() throws Exception{
-	return statement.executeQuery("SELECT * FROM Item");
+	return statement.executeQuery("SELECT * FROM \"Item\" ORDER BY \"ItemName\"");
     }
  
     public ResultSet selectAllRune() throws Exception{
-	return statement.executeQuery("SELECT * FROM Rune");
+	return statement.executeQuery("SELECT * FROM \"Rune\" ORDER BY \"RuneName\"");
     }
 
     public ResultSet selectAllMastery() throws Exception{
-	return statement.executeQuery("SELECT * FROM Mastery");
+	return statement.executeQuery("SELECT * FROM \"Mastery\" ORDER BY \"MasteryName\"");
     }
  
     public ResultSet selectAllSummonerSpell() throws Exception{
-	return statement.executeQuery("SELECT * FROM SummonerSpell");
+	return statement.executeQuery("SELECT * FROM \"SummonerSpell\" ORDER BY \"SummonerSpellName\"");
     }
 
     public ResultSet selectAllItemSet() throws Exception{
-	return statement.executeQuery("SELECT * FROM ItemSet");
+	return statement.executeQuery("SELECT * FROM \"ItemSet\"");
     }
 
     public ResultSet selectAllRuneSet() throws Exception{
-	return statement.executeQuery("SELECT * FROM RuneSet");
+	return statement.executeQuery("SELECT * FROM \"RuneSet\"");
     }
 
     public ResultSet selectAllMasterySet() throws Exception{
-	return statement.executeQuery("SELECT * FROM MasterySet");
+	return statement.executeQuery("SELECT * FROM \"MasterySet\"");
     }
 
     public ResultSet selectAllSummonerSpellSet() throws Exception{
-	return statement.executeQuery("SELECT * FROM SummonerSpellSet");
+	return statement.executeQuery("SELECT * FROM \"SummonerSpellSet\"");
     }
 
 
