@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 
 public class MainWindow extends JFrame {
@@ -76,11 +78,16 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> championNameList = new JList<String>(championsModel);
+			championNameList.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent arg0) {
+					championPane.setRightComponent(new ChampionPanel());
+				}
+			});
+			
 			JScrollPane champScrollPane = new JScrollPane();
 			champScrollPane.setViewportView(championNameList);
 			championPane.setLeftComponent(champScrollPane);		
-			
-			championPane.setRightComponent(new ChampionPanel());		
+				
 			
 			// Item Tab
 			JSplitPane itemPane = new JSplitPane();
