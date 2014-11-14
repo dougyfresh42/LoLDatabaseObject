@@ -14,7 +14,7 @@ public class SQLHelper {
         try {
             Class.forName("org.postgresql.Driver");
 
-            connect = DriverManager.getConnection("jdbc:postgresql:p32002h",
+            connect = DriverManager.getConnection("jdbc:postgresql://reddwarf.cs.rit.edu/p32002h",
                     "p32002h", "pass");
 
             statement = connect.createStatement();
