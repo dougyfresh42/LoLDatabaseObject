@@ -77,16 +77,12 @@ public class MainWindow extends JFrame {
 				championsModel.addElement(champs.getString("ChampName"));
 			}
 			
-			JList<String> championNameList = new JList<String>(championsModel);
-			championNameList.addListSelectionListener(new ListSelectionListener() {
-				public void valueChanged(ListSelectionEvent arg0) {
-					championPane.setRightComponent(new ChampionPanel());
-				}
-			});
-			
+			JList<String> championNameList = new JList<String>(championsModel);			
 			JScrollPane champScrollPane = new JScrollPane();
 			champScrollPane.setViewportView(championNameList);
-			championPane.setLeftComponent(champScrollPane);		
+			championPane.setLeftComponent(champScrollPane);	
+			
+			championPane.setRightComponent(new ChampionPanel());
 				
 			
 			// Item Tab
