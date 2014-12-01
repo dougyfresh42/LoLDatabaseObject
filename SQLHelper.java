@@ -123,6 +123,25 @@ public class SQLHelper {
 	return statement.executeQuery("SELECT * FROM \"SummonerSpellSet\"");
     }
 
+    public ResultSet selectChampionByName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"Champion\" WHERE \"ChampName\" = '" + name + "'");
+    }
+    
+    public ResultSet selectItemByName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"Item\" WHERE \"ItemName\" = '" + name + "'");
+    }
+    
+    public ResultSet selectMasteryByName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"Mastery\" WHERE \"MasteryName\" = '" + name + "'");	
+    }
+    
+    public ResultSet selectRuneByName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"Rune\" WHERE \"RuneName\" = '" + name + "'");
+    }
+    
+    public ResultSet selectSummonerSpellByName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"SummonerSpell\" WHERE \"SummonerSpellName\" = '" + name + "'");
+    }
 
     public void close() throws Exception{
         try {

@@ -77,7 +77,13 @@ public class MainWindow extends JFrame {
 				championsModel.addElement(champs.getString("ChampName"));
 			}
 			
-			JList<String> championNameList = new JList<String>(championsModel);			
+			JList<String> championNameList = new JList<String>(championsModel);
+			championNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = championNameList.getSelectedValue();
+					championPane.setRightComponent(new ChampionPanel(name, sql));
+				}
+			});
 			JScrollPane champScrollPane = new JScrollPane();
 			champScrollPane.setViewportView(championNameList);
 			championPane.setLeftComponent(champScrollPane);	
@@ -97,6 +103,12 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> itemNameList = new JList<String>(itemsModel);
+			itemNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = itemNameList.getSelectedValue();
+					itemPane.setRightComponent(new ItemPanel(name, sql));
+				}
+			});
 			JScrollPane itemScrollPane = new JScrollPane();
 			itemScrollPane.setViewportView(itemNameList);
 			itemPane.setLeftComponent(itemScrollPane);	
@@ -115,6 +127,12 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> masteryNameList = new JList<String>(masteriesModel);
+			masteryNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = masteryNameList.getSelectedValue();
+					masteriesPane.setRightComponent(new MasteryPanel(name, sql));
+				}
+			});
 			JScrollPane masteryScrollPane = new JScrollPane();
 			masteryScrollPane.setViewportView(masteryNameList);
 			masteriesPane.setLeftComponent(masteryScrollPane);	
@@ -133,6 +151,12 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> runeNameList = new JList<String>(runesModel);
+			runeNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = runeNameList.getSelectedValue();
+					runePane.setRightComponent(new RunePanel(name, sql));
+				}
+			});
 			JScrollPane runeScrollPane = new JScrollPane();
 			runeScrollPane.setViewportView(runeNameList);
 			runePane.setLeftComponent(runeScrollPane);	
@@ -151,6 +175,12 @@ public class MainWindow extends JFrame {
 			}
 			
 			JList<String> summonerSpellNameList = new JList<String>(summonerSpellsModel);
+			summonerSpellNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = summonerSpellNameList.getSelectedValue();
+					summonerSpellsPane.setRightComponent(new SummonerSpellPanel(name, sql));
+				}
+			});
 			JScrollPane ssScrollPane = new JScrollPane();
 			ssScrollPane.setViewportView(summonerSpellNameList);
 			summonerSpellsPane.setLeftComponent(ssScrollPane);	
