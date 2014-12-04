@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -22,7 +23,6 @@ public class SummonerSpellPanel extends JPanel {
 		tableModel.setColumnCount(2);
 		
 		tableModel.addRow(new String[]{"Name:"});
-		tableModel.addRow(new String[]{"Description:"});
 		
 		table = new JTable(tableModel)
 		{
@@ -41,7 +41,21 @@ public class SummonerSpellPanel extends JPanel {
 		
 		table.setRowHeight(1, 40);
 		
-		this.add(table, BorderLayout.WEST);
+		this.add(table, BorderLayout.NORTH);
+		
+		// Description
+		JTextArea descriptionArea = new JTextArea();
+		descriptionArea.setSize(200, 300);
+		descriptionArea.setLineWrap(true);
+		descriptionArea.setWrapStyleWord(true);
+		descriptionArea.setEditable(false);
+		
+		StringBuilder ss = new StringBuilder();
+		ss.append("Description:\n");
+		
+		descriptionArea.setText(ss.toString());
+		
+		this.add(descriptionArea, BorderLayout.CENTER);
 	}
 
 	public SummonerSpellPanel(String name, SQLHelper sql) 
@@ -57,7 +71,6 @@ public class SummonerSpellPanel extends JPanel {
 			tableModel.setColumnCount(2);
 			
 			tableModel.addRow(new String[]{"Name:", ssInfo.getString("SummonerSpellName")});
-			tableModel.addRow(new String[]{"Description:", ssInfo.getString("Description")});
 			
 			table = new JTable(tableModel)
 			{
@@ -76,7 +89,22 @@ public class SummonerSpellPanel extends JPanel {
 			
 			table.setRowHeight(1, 40);
 			
-			this.add(table, BorderLayout.WEST);
+			this.add(table, BorderLayout.NORTH);
+			
+			// Description
+			JTextArea descriptionArea = new JTextArea();
+			descriptionArea.setSize(200, 300);
+			descriptionArea.setLineWrap(true);
+			descriptionArea.setWrapStyleWord(true);
+			descriptionArea.setEditable(false);
+			
+			StringBuilder ss = new StringBuilder();
+			ss.append("Description:\n");
+			ss.append(ssInfo.getString("Description"));
+			
+			descriptionArea.setText(ss.toString());
+			
+			this.add(descriptionArea, BorderLayout.CENTER);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

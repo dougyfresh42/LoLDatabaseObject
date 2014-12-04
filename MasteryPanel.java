@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -23,7 +24,6 @@ public class MasteryPanel extends JPanel {
 		
 		tableModel.addRow(new String[]{"Name:"});
 		tableModel.addRow(new String[]{"Tree:"});
-		tableModel.addRow(new String[]{"Description:"});
 		
 		table = new JTable(tableModel)
 		{
@@ -42,7 +42,21 @@ public class MasteryPanel extends JPanel {
 		
 		table.setRowHeight(2, 40);
 		
-		this.add(table, BorderLayout.WEST);
+		this.add(table, BorderLayout.NORTH);
+		
+		// Description
+		JTextArea descriptionArea = new JTextArea();
+		descriptionArea.setSize(200, 300);
+		descriptionArea.setLineWrap(true);
+		descriptionArea.setWrapStyleWord(true);
+		descriptionArea.setEditable(false);
+		
+		StringBuilder ss = new StringBuilder();
+		ss.append("Description:\n");
+		
+		descriptionArea.setText(ss.toString());
+		
+		this.add(descriptionArea, BorderLayout.CENTER);
 	}
 
 	public MasteryPanel(String name, SQLHelper sql)
@@ -59,7 +73,6 @@ public class MasteryPanel extends JPanel {
 			
 			tableModel.addRow(new String[]{"Name:", masteryInfo.getString("MasteryName")});
 			tableModel.addRow(new String[]{"Tree:", masteryInfo.getString("Type")});
-			tableModel.addRow(new String[]{"Description:", masteryInfo.getString("Description")});
 			
 			table = new JTable(tableModel)
 			{
@@ -78,7 +91,22 @@ public class MasteryPanel extends JPanel {
 			
 			table.setRowHeight(2, 40);
 			
-			this.add(table, BorderLayout.WEST);
+			this.add(table, BorderLayout.NORTH);
+			
+			// Description
+			JTextArea descriptionArea = new JTextArea();
+			descriptionArea.setSize(200, 300);
+			descriptionArea.setLineWrap(true);
+			descriptionArea.setWrapStyleWord(true);
+			descriptionArea.setEditable(false);
+			
+			StringBuilder ss = new StringBuilder();
+			ss.append("Description:\n");
+			ss.append(masteryInfo.getString("Description"));
+			
+			descriptionArea.setText(ss.toString());
+			
+			this.add(descriptionArea, BorderLayout.CENTER);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

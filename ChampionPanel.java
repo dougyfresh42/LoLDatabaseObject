@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -17,7 +18,7 @@ public class ChampionPanel extends JPanel {
 	public ChampionPanel() {
 		
 		this.setLayout(new BorderLayout());
-		
+
 		tableModel.setColumnCount(2);
 		
 		tableModel.addRow(new String[]{"Name:"});
@@ -31,10 +32,6 @@ public class ChampionPanel extends JPanel {
 		tableModel.addRow(new String[]{"Defense:"});
 		tableModel.addRow(new String[]{"Magic Defense:"});
 		tableModel.addRow(new String[]{"Movement Speed:"});
-		tableModel.addRow(new String[]{"Q:"});
-		tableModel.addRow(new String[]{"W:"});
-		tableModel.addRow(new String[]{"E:"});
-		tableModel.addRow(new String[]{"R:"});
 		
 		table = new JTable(tableModel)
 		{
@@ -48,14 +45,25 @@ public class ChampionPanel extends JPanel {
 		table.setCellSelectionEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
-		table.setRowHeight(11,50);
-		table.setRowHeight(12,50);
-		table.setRowHeight(13,50);
-		table.setRowHeight(14,50);
 		
 				
-		this.add(table, BorderLayout.WEST);
-
+		this.add(table, BorderLayout.NORTH);
+		
+		// Description
+		JTextArea skillsArea = new JTextArea();
+		skillsArea.setSize(200, 300);
+		skillsArea.setLineWrap(true);
+		skillsArea.setWrapStyleWord(true);
+		skillsArea.setEditable(false);
+		
+		StringBuilder ss = new StringBuilder();
+		ss.append("Q:\n");
+		ss.append("W:\n");
+		ss.append("E:\n");
+		ss.append("R:\n");
+		skillsArea.setText(ss.toString());
+		
+		this.add(skillsArea, BorderLayout.CENTER);
 	}
 	
 	public ChampionPanel(String name, SQLHelper sql)
@@ -81,10 +89,6 @@ public class ChampionPanel extends JPanel {
 			tableModel.addRow(new String[]{"Armor:", championInfo.getString("Armor")});
 			tableModel.addRow(new String[]{"Magic Resist:", championInfo.getString("MagicResist")});
 			tableModel.addRow(new String[]{"Movement Speed:", championInfo.getString("MoveSpeed")});
-			tableModel.addRow(new String[]{"Q:", championInfo.getString("QDesc")});
-			tableModel.addRow(new String[]{"W:", championInfo.getString("WDesc")});
-			tableModel.addRow(new String[]{"E:", championInfo.getString("EDesc")});
-			tableModel.addRow(new String[]{"R:", championInfo.getString("RDesc")});
 			
 			table = new JTable(tableModel)
 			{
@@ -98,13 +102,33 @@ public class ChampionPanel extends JPanel {
 			table.setCellSelectionEnabled(false);
 			table.getColumnModel().getColumn(0).setPreferredWidth(100);
 			table.getColumnModel().getColumn(1).setPreferredWidth(200);
-			table.setRowHeight(11,50);
-			table.setRowHeight(12,50);
-			table.setRowHeight(13,50);
-			table.setRowHeight(14,50);
 			
 					
-			this.add(table, BorderLayout.WEST);
+			this.add(table, BorderLayout.NORTH);
+			
+			// Description
+			JTextArea skillsArea = new JTextArea();
+			skillsArea.setSize(200, 300);
+			skillsArea.setLineWrap(true);
+			skillsArea.setWrapStyleWord(true);
+			skillsArea.setEditable(false);
+			
+			StringBuilder ss = new StringBuilder();
+			ss.append("Q:\n");
+			ss.append(championInfo.getString("QDesc"));
+			ss.append("\n\n");
+			ss.append("W:\n");
+			ss.append(championInfo.getString("WDesc"));
+			ss.append("\n\n");
+			ss.append("E:\n");
+			ss.append(championInfo.getString("EDesc"));
+			ss.append("\n\n");
+			ss.append("R:\n");
+			ss.append(championInfo.getString("RDesc"));
+			ss.append("\n\n");
+			skillsArea.setText(ss.toString());
+			
+			this.add(skillsArea, BorderLayout.CENTER);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
