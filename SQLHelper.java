@@ -72,6 +72,10 @@ public class SQLHelper {
     public boolean insertSummonerSpellSet(String values) throws Exception{
 	return statement.execute("INSERT INTO \"SummonerSpellSet\"(\"GameID\", \"Champion\", \"SummonerSpell1\", \"SummonerSpell2\") VALUES("+values+");");
     }
+    
+    public boolean insertPlayer(String values) throws Exception{
+	return statement.execute("INSERT INTO \"Player\"(\"Name\", \"Lp\", \"Wins\", \"Losses\") VALUES("+values+");");
+    }
 
     //THE SELECT STATEMENTS
    

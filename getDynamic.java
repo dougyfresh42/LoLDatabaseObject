@@ -8,22 +8,24 @@ public class getDynamic {
         JsonHelper jsoner = new JsonHelper();
         stringCleaner sc = new stringCleaner();
 
-        //masteries
-        inserter.arbitraryQuery("truncate \"Mastery\"");
-        ArrayList<JSONObject> masteries = jsoner.getMasteries();
+        inserter.arbitraryQuery("truncate \"Player\"");
+        ArrayList<JSONObject> players = jsoner.getChallengerPlayers();
 
-        for(int i = 0; i < masteries.size(); i++) {
-            String name = masteries.get(i).get("name").toString();
-            name = sc.cleanString(name);
+        for(int i = 0; i < players.size(); i++) {
+            String name = sc.cleanString(
+                players.get(i).get("playerOrTeamName").toString());
+            String id = players.get(i).get("playerOrTeamId").toString();
 
-            String description = masteries.get(i).get("sanitizedDescription").toString();
-            description = sc.cleanString(description);
+            String lp = players.get(i).get("leaguePoints").toString();
 
-            String tree = "\'A\'";
+            String wins = players.get(i).get("wins").toString();
 
-            inserter.insertMastery(name + ", " + description + ", " + tree);
+            String losses = jsoner.getLosses(id);
+
+            inserter.insertPlayer(name + ", " + lp + ", " + wins + ", " + losses);
+
+            Thread.sleep(1000);
+            System.out.print(".");
         }
-
-        
     }
 }

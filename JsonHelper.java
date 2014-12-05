@@ -322,7 +322,65 @@ public class JsonHelper
 		}
 		return matches;
 	}
-	
+
+    public ArrayList<JSONObject> getChallengerPlayers() throws ParseException, IOException
+    {
+        ArrayList<JSONObject> playersArr = new ArrayList<JSONObject>();
+
+        URL url = new URL(BASE_URL + "na" + "/v2.5/league/challenger?type=RANKED_SOLO_5x5&api_key=" + API_KEY);
+        InputStream is = url.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        String jsonText = readAll(reader);
+        JSONObject obj = (JSONObject) parser.parse(jsonText);
+        JSONArray players = (JSONArray)obj.get("entries");
+
+        Iterator<JSONObject> iter = players.iterator();
+        while(iter.hasNext())
+            playersArr.add((JSONObject)iter.next());
+
+        return playersArr;
+	}
+
+    public ArrayList<JSONObject> getPlayerRunes(String playerID) throws IOException, ParseException
+    {
+        ArrayList<JSONObject> masteryPages = new ArrayList<JSONObject>();
+
+        URL url = new URL(BASE_URL + "na" + "/v1.4/summoner/" + playerID + "/masteries?api_key=" + API_KEY);
+        InputStream is = url.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        String jsonText = readAll(reader);
+        JSONObject obj = (JSONObject) parser.parse(jsonText);
+        JSONObject pgs = (JSONObject)obj.get(playerID);
+        JSONArray pages = (JSONArray)pgs.get("pages");
+
+        Iterator<JSONObject> iter = pages.iterator();
+        while(iter.hasNext())
+            masteryPages.add((JSONObject)iter.next());
+
+        return masteryPages;
+    }
+
+    public String getLosses(String playerID) throws IOException, ParseException
+    {
+        int losses = 500;
+
+        URL url = new URL(BASE_URL + "na" + "/v1.3/stats/by-summoner/" + playerID + "/summary?season=SEASON4&api_key=" + API_KEY);
+        InputStream is = url.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        String jsonText = readAll(reader);
+        JSONObject obj = (JSONObject) parser.parse(jsonText);
+        JSONArray summs = (JSONArray) obj.get("playerStatSummaries");
+
+        Iterator<JSONObject> iter = summs.iterator();
+        while(iter.hasNext()){
+            JSONObject currStats = (JSONObject)iter.next();
+            String type = currStats.get("playerStatSummaryType").toString();
+            if(type.equals("RankedSolo5x5"))
+                return currStats.get("losses").toString();
+        }
+        return "500";
+    }
+
 	public static void main(String[] args)
 	{
 		JsonHelper j = new JsonHelper();
