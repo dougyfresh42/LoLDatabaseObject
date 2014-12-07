@@ -120,7 +120,10 @@ public class getStatic {
             String tier = 
              sc.cleanString(((JSONObject)rune.get("rune")).get("tier").toString());
 
-            inserter.insertRune(name + ", " + desc + ", " + price + ", " + tier);
+            String id = 
+             rune.get("id").toString();
+
+            inserter.insertRune(name + ", " + desc + ", " + price + ", " + tier + ", " + id);
         }
 
         //items

@@ -345,7 +345,7 @@ public class JsonHelper
     {
         ArrayList<JSONObject> masteryPages = new ArrayList<JSONObject>();
 
-        URL url = new URL(BASE_URL + "na" + "/v1.4/summoner/" + playerID + "/masteries?api_key=" + API_KEY);
+        URL url = new URL(BASE_URL + "na" + "/v1.4/summoner/" + playerID + "/runes?api_key=" + API_KEY);
         InputStream is = url.openStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
         String jsonText = readAll(reader);
