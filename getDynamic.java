@@ -67,7 +67,33 @@ public class getDynamic {
             //MASTERIES
             
             ArrayList<JSONObject> masteries = jsoner.getPlayerMasteries(id);
-            //loljk
+
+            for(int j = 0; j < masteries.size(); j++) {
+                JSONObject page = masteries.get(j);
+
+                if(page.get("name") == null) continue;
+
+                String pageName = sc.cleanString(
+                    page.get("name").toString());
+
+                JSONArray masteryPage = (JSONArray)page.get("masteries");
+                if(masteryPage == null) continue;
+                String masteryString = "";
+                
+                Iterator<JSONObject> iter = masteryPage.iterator();
+                int count = 30;
+                while(iter.hasNext()) {
+                    count--;
+                    JSONObject mastery = iter.next();
+                    masteryString = masteryString + sc.cleanString(
+                        mastery.get("id").toString()) + ", ";
+                }
+
+                for(int k = 0; k < count; k++)
+                    masteryString = masteryString + "null, ";
+
+                inserter.insertMasterySet(masteryString + name + ", " + pageName);
+                }
 
             Thread.sleep(3000);
             System.out.print(".");

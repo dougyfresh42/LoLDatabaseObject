@@ -21,7 +21,9 @@ public class getStatic {
 
             String tree = "\'A\'";
 
-            inserter.insertMastery(name + ", " + description + ", " + tree);
+            String id = sc.cleanString(masteries.get(i).get("id").toString());
+
+            inserter.insertMastery(name + ", " + description + ", " + tree + ", " + id);
         }
 
         //champions

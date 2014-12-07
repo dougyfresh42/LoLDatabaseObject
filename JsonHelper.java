@@ -360,6 +360,26 @@ public class JsonHelper
         return masteryPages;
     }
 
+    public ArrayList<JSONObject> getPlayerMasteries(String playerID) throws IOException, ParseException
+    {
+        ArrayList<JSONObject> masteryPages = new ArrayList<JSONObject>();
+
+        URL url = new URL(BASE_URL + "na" + "/v1.4/summoner/" + playerID + "/masteries?api_key=" + API_KEY);
+        InputStream is = url.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+        String jsonText = readAll(reader);
+        JSONObject obj = (JSONObject) parser.parse(jsonText);
+        JSONObject pgs = (JSONObject)obj.get(playerID);
+        JSONArray pages = (JSONArray)pgs.get("pages");
+
+        Iterator<JSONObject> iter = pages.iterator();
+        while(iter.hasNext())
+            masteryPages.add((JSONObject)iter.next());
+
+        return masteryPages;
+    }
+
+
     public String getLosses(String playerID) throws IOException, ParseException
     {
         int losses = 500;

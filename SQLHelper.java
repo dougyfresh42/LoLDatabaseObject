@@ -30,7 +30,7 @@ public class SQLHelper {
 
     public boolean insertMastery(String values) throws Exception{
         //System.out.println("INSERT INTO \"Mastery\"(\"MasteryName\", \"Description\", \"Type\") VALUES("+values+");");
-        return statement.execute("INSERT INTO \"Mastery\"(\"MasteryName\", \"Description\", \"Type\") VALUES("+values+");");
+        return statement.execute("INSERT INTO \"Mastery\"(\"MasteryName\", \"Description\", \"Type\", \"ID\") VALUES("+values+");");
     }
 
     public boolean insertChampion(String values) throws Exception{
@@ -49,8 +49,12 @@ public class SQLHelper {
 	return statement.execute("INSERT INTO \"ItemSet\"(\"GameID\", \"Champion\", \"Item1\", \"Item2\", \"Item3\", \"Item4\", \"Item5\",\"Item6\", \"Trinket\") VALUES("+values+");");
     }
 
-    public boolean insertMasteryList(String values) throws Exception{
-	return statement.execute("INSERT INTO \"MasterySet\"(\"GameID\", \"Champion\", \"Mastery1\", \"Mastery2\", \"Mastery3\", \"Mastery4\",\"Mastery5\", \"Mastery6\", \"Mastery7\", \"Mastery8\", \"Mastery9\", \"Mastery10\",\"Mastery11\", \"Mastery12\", \"Mastery13\", \"Mastery14\", \"Mastery15\",\"Mastery16\", \"Mastery17\", \"Mastery18\", \"Mastery19\", \"Mastery20\",\"Mastery21\", \"Mastery22\", \"Mastery23\", \"Mastery24\", \"Mastery25\",\"Mastery26\", \"Mastery27\", \"Mastery28\", \"Mastery29\", \"Mastery30\") VALUES("+values+");");
+    //public boolean insertMasterySet(String values) throws Exception{
+	//return statement.execute("INSERT INTO \"MasterySet\"(\"GameID\", \"Champion\", \"Mastery1\", \"Mastery2\", \"Mastery3\", \"Mastery4\",\"Mastery5\", \"Mastery6\", \"Mastery7\", \"Mastery8\", \"Mastery9\", \"Mastery10\",\"Mastery11\", \"Mastery12\", \"Mastery13\", \"Mastery14\", \"Mastery15\",\"Mastery16\", \"Mastery17\", \"Mastery18\", \"Mastery19\", \"Mastery20\",\"Mastery21\", \"Mastery22\", \"Mastery23\", \"Mastery24\", \"Mastery25\",\"Mastery26\", \"Mastery27\", \"Mastery28\", \"Mastery29\", \"Mastery30\") VALUES("+values+");");
+    //}
+    //
+    public boolean insertMasterySet(String values) throws Exception{
+    return statement.execute("INSERT INTO \"MasterySet\" VALUES("+values+");");
     }
 
     public boolean insertRegion(String values) throws Exception{
@@ -60,10 +64,6 @@ public class SQLHelper {
     public boolean insertRune(String values) throws  Exception{
 	return statement.execute("INSERT INTO \"Rune\"(\"RuneName\", \"Description\", \"Price\", \"Tier\", \"ID\") VALUES("+values+");");
     }
-
-/*    public boolean insertRuneSet(String values) throws Exception{
-	return statement.execute("INSERT INTO \"RuneSet\"(\"GameID\", \"Champion\", \"Rune1\", \"Rune2\", \"Rune3\", \"Rune4\", \"Rune5\",\"Rune6\", \"Rune7\", \"Rune8\", \"Rune9\", \"Rune10\", \"Rune11\", \"Rune12\",\"Rune13\", \"Rune14\", \"Rune15\", \"Rune16\", \"Rune17\", \"Rune18\", \"Rune19\",\"Rune20\", \"Rune21\", \"Rune22\", \"Rune23\", \"Rune24\", \"Rune25\", \"Rune26\",\"Rune27\", \"Rune28\", \"Rune29\", \"Rune30\") VALUES("+values+");");
-    }*/
 
     public boolean insertSummonerSpell(String values) throws Exception{
 	return statement.execute("INSERT INTO \"SummonerSpell\"(\"SummonerSpellName\", \"Description\") VALUES("+values+");");
