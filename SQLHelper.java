@@ -150,6 +150,14 @@ public class SQLHelper {
     public ResultSet selectSummonerSpellByName(String name) throws Exception{
     return statement.executeQuery("SELECT * FROM \"SummonerSpell\" WHERE \"SummonerSpellName\" = '" + name + "'");
     }
+    
+    public ResultSet selectRuneSetByPlayerName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"RuneSet\" WHERE \"PlayerName\" = '" + name +"'");	
+    }
+
+    public ResultSet selectMasterySetByPlayerName(String name) throws Exception{
+    return statement.executeQuery("SELECT * FROM \"MasterySet\" WHERE \"PlayerName\" = '" + name + "'");
+    }
 
     public void close() throws Exception{
         try {
