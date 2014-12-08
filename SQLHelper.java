@@ -49,10 +49,6 @@ public class SQLHelper {
 	return statement.execute("INSERT INTO \"ItemSet\"(\"GameID\", \"Champion\", \"Item1\", \"Item2\", \"Item3\", \"Item4\", \"Item5\",\"Item6\", \"Trinket\") VALUES("+values+");");
     }
 
-    //public boolean insertMasterySet(String values) throws Exception{
-	//return statement.execute("INSERT INTO \"MasterySet\"(\"GameID\", \"Champion\", \"Mastery1\", \"Mastery2\", \"Mastery3\", \"Mastery4\",\"Mastery5\", \"Mastery6\", \"Mastery7\", \"Mastery8\", \"Mastery9\", \"Mastery10\",\"Mastery11\", \"Mastery12\", \"Mastery13\", \"Mastery14\", \"Mastery15\",\"Mastery16\", \"Mastery17\", \"Mastery18\", \"Mastery19\", \"Mastery20\",\"Mastery21\", \"Mastery22\", \"Mastery23\", \"Mastery24\", \"Mastery25\",\"Mastery26\", \"Mastery27\", \"Mastery28\", \"Mastery29\", \"Mastery30\") VALUES("+values+");");
-    //}
-    //
     public boolean insertMasterySet(String values) throws Exception{
     return statement.execute("INSERT INTO \"MasterySet\" VALUES("+values+");");
     }
@@ -100,7 +96,7 @@ public class SQLHelper {
     }
 
     public ResultSet selectAllItem() throws Exception{
-	return statement.executeQuery("SELECT * FROM \"Item\" ORDER BY \"ItemName\"");
+	return statement.executeQuery("SELECT DISTINCT ON (\"ItemName\") * FROM \"Item\" ORDER BY \"ItemName\"");
     }
  
     public ResultSet selectAllRune() throws Exception{
