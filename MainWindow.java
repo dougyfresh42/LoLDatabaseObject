@@ -227,6 +227,7 @@ public class MainWindow extends JFrame {
 			searchPanel.add(searchBtn, BorderLayout.SOUTH);
 			
 			playerPane.setLeftComponent(searchPanel);
+			playerPane.setRightComponent(new PlayerPanel());
 			
 			
 		}

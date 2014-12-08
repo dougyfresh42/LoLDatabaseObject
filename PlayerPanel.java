@@ -12,6 +12,18 @@ public class PlayerPanel extends JPanel{
 	private HashMap<String, Integer> setMap = new HashMap<String, Integer>();
 	private ResultSet runeInfo;
 	
+	public PlayerPanel()
+	{
+		this.setLayout(new BorderLayout());
+		
+		JTextArea runesArea = new JTextArea();
+		runesArea.setLineWrap(true);
+		runesArea.setWrapStyleWord(true);
+		runesArea.setEditable(false);
+		
+		this.add(runesArea, BorderLayout.CENTER);
+	}
+	
 	public PlayerPanel(SQLHelper sql, String playerName)
 	{		
 		try {
@@ -23,15 +35,13 @@ public class PlayerPanel extends JPanel{
 			
 			StringBuilder ss = new StringBuilder();
 			
+			ss.append("RUNES:\n");
 			while(runeInfo.next())
-			{
-				StringBuilder statSS = new StringBuilder();
-				
+			{				
 				buildMap();
 				
 				ss.append(runeInfo.getString("RuneSetName"));
 				ss.append(":\n");
-				ss.append("\tRunes:\n");
 				for(String key : setMap.keySet())
 				{
 					SQLHelper tempSql = new SQLHelper();
@@ -48,6 +58,24 @@ public class PlayerPanel extends JPanel{
 					ss.append("\n");
 					
 					tempSql.close();
+				}
+				ss.append("\n");
+			}
+			
+			ResultSet masteryInfo = sql.selectMasterySetByPlayerName(playerName);
+			ss.append("MASTERIES:\n");
+			while(masteryInfo.next())
+			{
+				ss.append(masteryInfo.getString("SetName"));
+				ss.append("\n");
+				for(int i = 1; i <= 30; i++)
+				{
+					ss.append("\t");
+					if(masteryInfo.getString("Mastery" + i) != null)
+					{
+						ss.append(masteryInfo.getString("Mastery" + i));
+						ss.append("\n");
+					}
 				}
 				ss.append("\n");
 			}
