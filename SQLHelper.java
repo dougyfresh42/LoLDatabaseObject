@@ -156,7 +156,7 @@ public class SQLHelper {
     }
 
 public ResultSet selectAllPlayers() throws Exception {
-    return statement.executeQuery("SELECT * FROM \"Player\" ORDER BY \"Lp\"");
+    return statement.executeQuery("SELECT * FROM \"Player\" ORDER BY \"Lp\" DESC");
     }
 
     public void close() throws Exception{
