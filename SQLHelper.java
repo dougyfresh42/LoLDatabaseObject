@@ -155,6 +155,10 @@ public class SQLHelper {
     return statement.executeQuery("SELECT * FROM \"MasterySet\" WHERE \"PlayerName\" = '" + name + "'");
     }
 
+public ResultSet selectAllPlayers() throws Exception {
+    return statement.executeQuery("SELECT * FROM \"Player\" ORDER BY \"Lp\"");
+    }
+
     public void close() throws Exception{
         try {
             if (connect != null) connect.close();
