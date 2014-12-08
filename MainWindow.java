@@ -36,6 +36,7 @@ public class MainWindow extends JFrame {
 	private DefaultListModel<String> masteriesModel = new DefaultListModel<String>();
 	private DefaultListModel<String> runesModel = new DefaultListModel<String>();
 	private DefaultListModel<String> summonerSpellsModel = new DefaultListModel<String>();
+	private DefaultListModel<String> playersModel = new DefaultListModel<String>();
 
 	/**
 	 * Launch the application.
@@ -208,26 +209,29 @@ public class MainWindow extends JFrame {
 			playerPane.setResizeWeight(.25);
 			tabbedPane.addTab("Players", null, playerPane, null);
 			
-			JTextField searchBox = new JTextField(20);
-			searchBox.setSize(20, 100);
-			JButton searchBtn = new JButton("Search");
-			searchBtn.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent arg0) {
-					String playerName = searchBox.getText();
-					JScrollPane playerScrollPane = new JScrollPane();
-					playerScrollPane.setViewportView(new PlayerPanel(sql, playerName));
-					playerPane.setRightComponent(playerScrollPane);
+			ResultSet players = sql.selectAllPlayers();
+			while(players.next())
+			{
+				playersModel.addElement(players.getString("Name"));
+			}
+			
+			JList<String> playerNameList = new JList<String>(playersModel);
+			playerNameList.addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent arg0) {
+					String name = playerNameList.getSelectedValue();
+					JScrollPane playerInfoScrollPane = new JScrollPane();
+					playerInfoScrollPane.setViewportView(new PlayerPanel(sql, name));
+					playerPane.setRightComponent(playerInfoScrollPane);
 					playerPane.setDividerLocation(150);
 				}
 			});
+			JScrollPane playerNameScrollPane = new JScrollPane();
+			playerNameScrollPane.setViewportView(playerNameList);
+			playerPane.setLeftComponent(playerNameScrollPane);
 			
-			JPanel searchPanel = new JPanel();
-			searchPanel.setLayout(new BorderLayout());
-			searchPanel.add(searchBox, BorderLayout.NORTH);
-			searchPanel.add(searchBtn, BorderLayout.SOUTH);
-			
-			playerPane.setLeftComponent(searchPanel);
-			playerPane.setRightComponent(new PlayerPanel());
+			JScrollPane playerInfoScrollPane = new JScrollPane();
+			playerInfoScrollPane.setViewportView(new PlayerPanel());
+			playerPane.setRightComponent(playerInfoScrollPane);
 			
 			
 		}
